@@ -11,9 +11,17 @@ const PersonaSelector: FunctionComponent = ReactElement => {
     });
 
     const setPersona = useCallback(
-        () => croct.user.edit()
-            .set('custom.persona', 'default')
-            .save(),
+        (event: ChangeEvent<HTMLSelectElement>) => {
+            const patch = croct.user.edit();
+
+            if (event.target.value === 'default') {
+                patch.unset('custom.persona');
+            } else {
+                patch.set('custom.persona', event.target.value);
+            }
+
+            patch.save().then(() => window.setTimeout(() => window.location.reload(), 300));
+        },
         [croct],
     );
 
