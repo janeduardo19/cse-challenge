@@ -21,19 +21,17 @@ const initialContent: SlotProps = {
 };
 
 const HomeBanner: FunctionComponent = ReactElement => (
-	<Suspense fallback=":✨ Personalizing...">
-		<Slot id="home-banner" initial={initialContent} fallback={defaultContent}>
-			{({ loading, title, subtitle, cta }: SlotProps) => (
-				<div className={`hero${loading ? ' loading' : ''}`}>
-					<h1>{title}</h1>
-					<p className="subtitle">
-						{subtitle}
-					</p>
-					<a href={cta.link} className="cta">{cta.label}</a>
-				</div>
-			)}
-		</Slot>
-	</Suspense>
+	<Slot id="home-banner" initial={initialContent} fallback={defaultContent}>
+		{({ loading, title, subtitle, cta }: SlotProps) => (
+			<div className={`hero${loading ? ' loading' : ''}`}>
+				<h1>{title}</h1>
+				<p className="subtitle">
+					{subtitle}
+				</p>
+				<a href={cta.link} className="cta">{cta.label}</a>
+			</div>
+		)}
+	</Slot>
 );
 
 export default HomeBanner;
