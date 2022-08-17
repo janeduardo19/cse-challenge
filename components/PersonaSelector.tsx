@@ -1,9 +1,9 @@
-import { ChangeEvent, FunctionComponent, useCallback } from 'react';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
 import { useCroct, useEvaluation } from '@croct/plug-react';
 
 type Persona = 'marketer' | 'developer' | 'growth-hacker' | 'default';
 
-const PersonaSelector: FunctionComponent = ReactElement => {
+function PersonaSelector(): ReactElement {
 	const croct = useCroct();
 	const persona = useEvaluation<Persona | null>("user's persona or else 'default'", {
 		initial: null,
