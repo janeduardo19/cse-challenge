@@ -1,7 +1,7 @@
 ## Croct Application
 
 This challenge had the goal to integrate a React app whith the Croct plugin to pratice some concepts about personalization. The sandbox which I could use already has the differents contents which I need to show in the application. This way, I created some components to call the home-banner Slot and make the user selection. In the end the content of the page change if we change the user, but I don't now how to personalize the sandbox content(or if I can do that) to put images or something like this.<br>
-Obs.: I dont know how to do automated tests, but I always been curious about it so I get the test archives from a exemple and did modifications to test my app.
+Obs.: I dont know how to do automated tests, but I always been curious about it so I get the test archives from a exemple and did modifications to test my app. Although they are having problems.
 
 ## Inicialization Codes
 
