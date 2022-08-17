@@ -3,9 +3,14 @@ import { useCroct, useEvaluation } from '@croct/plug-react';
 
 type Persona = 'marketer' | 'developer' | 'growth-hacker' | 'default';
 
-function PersonaSelector(): ReactElement {
+type PersonaSelectorProps = {
+    cacheKey?: string
+};
+
+function PersonaSelector({cacheKey}: PersonaSelectorProps): ReactElement {
 	const croct = useCroct();
 	const persona = useEvaluation<Persona | null>("user's persona or else 'default'", {
+		cacheKey: cacheKey,
 		initial: null,
 		fallback: 'default',
 	});

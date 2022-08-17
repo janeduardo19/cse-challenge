@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, Suspense } from 'react';
 import { Slot } from '@croct/plug-react';
 import { SlotContent } from '@croct/plug/fetch';
 
@@ -20,19 +20,25 @@ const initialContent: SlotProps = {
 	loading: true,
 };
 
-function HomeBanner(): ReactElement {
+type HomeBannerProps = {
+	cacheKey?: string
+}
+
+function HomeBanner({ cacheKey }: HomeBannerProps): ReactElement {
 	return (
-		<Slot id="home-banner" initial={initialContent} fallback={defaultContent}>
-			{({ loading, title, subtitle, cta }: SlotProps) => (
-				<div className={`hero${loading ? ' loading' : ''}`}>
-					<h1>{title}</h1>
-					<p className="subtitle">
-						{subtitle}
-					</p>
-					<a href={cta.link} className="cta">{cta.label}</a>
-				</div>
-			)}
-		</Slot>
+		<Suspense fallback="Loading...">
+			<Slot id="home-banner" initial={initialContent} fallback={defaultContent} cacheKey={cacheKey}>
+				{({ loading, title, subtitle, cta }: SlotProps) => (
+					<div className={`hero${loading ? ' loading' : ''}`}>
+						<h1>{title}</h1>
+						<p className="subtitle">
+							{subtitle}
+						</p>
+						<a href={cta.link} className="cta">{cta.label}</a>
+					</div>
+				)}
+			</Slot>
+		</Suspense>
 	);
 }
 
